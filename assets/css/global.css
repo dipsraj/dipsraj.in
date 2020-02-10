@@ -11,6 +11,9 @@ body {
     align-items: center;
     flex-direction: column;
 }
+.main-wrapper .info{
+    display: flex;
+}
 .main-wrapper div {
     color: #fff;
     font-size: 20px;
