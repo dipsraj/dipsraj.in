@@ -26,7 +26,7 @@ body {
 .text-animate{
     background: linear-gradient(90deg, #000, #fff, #000) no-repeat;
     background-size: 80%;
-    animation: animate 2s linear infinite;
+    animation: animate 4s linear infinite;
     -webkit-background-clip: text;
     -webkit-text-fill-color: rgba(255, 255, 255, 0);
 }
