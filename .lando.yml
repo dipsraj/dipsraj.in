@@ -1,0 +1,18 @@
+name: dipsraj
+recipe: lamp
+config:
+  php:  '7.4'
+  webroot: .
+  xdebug: true
+services:
+  pma:
+    type: phpmyadmin
+  mailhog:
+    type: mailhog
+    hogfrom:
+      - appserver
+tooling:
+  drush:
+    cmd: vendor/drush/drush/drush
+  drupal:
+    cmd: vendor/drupal/console/bin/drupal
