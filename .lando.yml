@@ -1,0 +1,4 @@
+name: dipsraj
+recipe: lamp
+config:
+  webroot: .

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dipsraj - Coming Soon</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            height: 100vh;
+            background: linear-gradient(135deg, #6e72fc, #ad1deb);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .main-title {
+            font-family: Arial, sans-serif;
+            font-size: 6rem;
+            color: white;
+            text-align: center;
+            animation: fadeInText 2s ease forwards;
+            opacity: 0;
+        }
+        .note {
+            font-family: Arial, sans-serif;
+            font-size: 1.5rem;
+            color: white;
+            margin-top: 10px;
+            text-align: center;
+            animation: fadeInText 2s 1s ease forwards;
+            opacity: 0;
+        }
+        @keyframes fadeInText {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes bubbleUp {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+<div>
+    <h1 class="main-title">dipsraj</h1>
+    <p class="note">Something epic is on the horizon...</p>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const bgAnimation = document.createElement('div');
+    bgAnimation.style.position = 'absolute';
+    bgAnimation.style.width = '100%';
+    bgAnimation.style.height = '100%';
+    bgAnimation.style.overflow = 'hidden';
+    bgAnimation.style.zIndex = '-1';
+
+    const bubbleCount = 40;
+    const bubbleDensity = 5;
+    const minSpeed = 3;
+    const maxSpeed = 20;
+
+    for (let i = 0; i < bubbleCount * bubbleDensity; i++) {
+      const bubble = document.createElement('div');
+      const size = Math.random() * 10 + 5;
+      const speed = Math.random() * (maxSpeed - minSpeed) + minSpeed;
+      const delay = Math.random() * 5;  // Random delay between 0 to 5 seconds
+
+      bubble.style.width = bubble.style.height = `${size}px`;
+      bubble.style.position = 'absolute';
+      bubble.style.bottom = '-10px';
+      bubble.style.left = `${Math.random() * 100}%`;
+      bubble.style.backgroundColor = 'rgba(255, 255, 255, 0.7)';
+      bubble.style.borderRadius = '50%';
+      bubble.style.animation = `bubbleUp ${speed}s linear ${delay}s infinite`;
+
+      bgAnimation.appendChild(bubble);
+    }
+
+    document.body.appendChild(bgAnimation);
+  });
+</script>
+</body>
+</html>
