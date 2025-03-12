@@ -11,38 +11,27 @@
             padding: 0;
             box-sizing: border-box;
             height: 100vh;
-            background: linear-gradient(135deg, #6e72fc, #ad1deb);
+            background: radial-gradient(circle at 20% 40%, #0d0d2b, #000000);
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
+            position: relative;
         }
-        .main-title {
+        h1, p {
             font-family: Arial, sans-serif;
-            font-size: 6rem;
-            color: white;
+            color: #e0e0ff;
             text-align: center;
-            animation: fadeInText 2s ease forwards;
-            opacity: 0;
+            animation: floatText 6s ease-in-out infinite alternate;
         }
-        .note {
-            font-family: Arial, sans-serif;
+        h1 {
+            font-size: 5rem;
+            animation-delay: 0.5s;
+        }
+        p {
             font-size: 1.5rem;
-            color: white;
             margin-top: 10px;
-            text-align: center;
-            animation: fadeInText 2s 1s ease forwards;
-            opacity: 0;
-        }
-        @keyframes fadeInText {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            animation-delay: 1s;
         }
         @keyframes bubbleUp {
             0% {
@@ -54,12 +43,16 @@
                 opacity: 0;
             }
         }
+        @keyframes floatText {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-10px); }
+        }
     </style>
 </head>
 <body>
 <div>
-    <h1 class="main-title">dipsraj</h1>
-    <p class="note">Something epic is on the horizon...</p>
+    <h1>dipsraj</h1>
+    <p>Something epic is on the horizon...</p>
 </div>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
@@ -79,7 +72,8 @@
       const bubble = document.createElement('div');
       const size = Math.random() * 10 + 5;
       const speed = Math.random() * (maxSpeed - minSpeed) + minSpeed;
-      const delay = Math.random() * 5;  // Random delay between 0 to 5 seconds
+      const delay = Math.random() * 5;
+      const glowIntensity = Math.random() * 10 + 5;
 
       bubble.style.width = bubble.style.height = `${size}px`;
       bubble.style.position = 'absolute';
@@ -88,11 +82,37 @@
       bubble.style.backgroundColor = 'rgba(255, 255, 255, 0.7)';
       bubble.style.borderRadius = '50%';
       bubble.style.animation = `bubbleUp ${speed}s linear ${delay}s infinite`;
+      bubble.style.filter = `blur(2px)`;
+      bubble.style.boxShadow = `0 0 ${glowIntensity}px rgba(255, 255, 255, 0.8)`;
 
       bgAnimation.appendChild(bubble);
     }
 
     document.body.appendChild(bgAnimation);
+
+    // Adding twinkling stars
+    const starContainer = document.createElement('div');
+    starContainer.style.position = 'absolute';
+    starContainer.style.width = '100%';
+    starContainer.style.height = '100%';
+    starContainer.style.zIndex = '-2';
+
+    const starCount = 100;
+    for (let i = 0; i < starCount; i++) {
+      const star = document.createElement('div');
+      const size = Math.random() * 2 + 1;
+      star.style.width = star.style.height = `${size}px`;
+      star.style.position = 'absolute';
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.backgroundColor = 'white';
+      star.style.borderRadius = '50%';
+      star.style.opacity = Math.random();
+      star.style.animation = `twinkle ${Math.random() * 5 + 2}s infinite alternate`;
+      starContainer.appendChild(star);
+    }
+
+    document.body.appendChild(starContainer);
   });
 </script>
 </body>
