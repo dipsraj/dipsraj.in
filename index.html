@@ -69,6 +69,7 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
         /* Animation class to be added by JS */
         .fade-in-up {
@@ -109,6 +110,32 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #6366f1;
         }
+
+        /* Portrait photo animation */
+        @keyframes slow-float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .animated-portrait {
+            animation: slow-float 6s ease-in-out infinite;
+        }
+
+        /* Skills card hover effect */
+        .skill-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Project card hover effect */
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.25);
+        }
+        .project-card:hover img {
+            filter: brightness(1.1);
+        }
+
     </style>
 </head>
 
@@ -125,7 +152,7 @@
             <div class="hidden md:flex items-center space-x-6">
                 <a href="#about" class="text-slate-300 hover:text-sky-400 transition-colors">About</a>
                 <a href="#skills" class="text-slate-300 hover:text-sky-400 transition-colors">Skills</a>
-                <a href="#web-projects" class="text-slate-300 hover:text-sky-400 transition-colors">Web Projects</a>
+                <a href="#footprint" class="text-slate-300 hover:text-sky-400 transition-colors">Digital Footprint</a>
                 <a href="#photography" class="text-slate-300 hover:text-sky-400 transition-colors">Photography</a>
                 <a href="#travel" class="text-slate-300 hover:text-sky-400 transition-colors">Travel</a>
                 <a href="#contact" class="px-4 py-2 border border-sky-400 text-sky-400 rounded-full hover:bg-sky-400 hover:text-gray-900 transition-all duration-300">Contact</a>
@@ -139,7 +166,7 @@
         <div id="mobile-menu" class="hidden md:hidden bg-gray-900/80 backdrop-blur-sm">
             <a href="#about" class="block py-3 px-6 text-slate-300 hover:bg-sky-400/20">About</a>
             <a href="#skills" class="block py-3 px-6 text-slate-300 hover:bg-sky-400/20">Skills</a>
-            <a href="#web-projects" class="block py-3 px-6 text-slate-300 hover:bg-sky-400/20">Projects</a>
+            <a href="#footprint" class="block py-3 px-6 text-slate-300 hover:bg-sky-400/20">Digital Footprint</a>
             <a href="#photography" class="block py-3 px-6 text-slate-300 hover:bg-sky-400/20">Photography</a>
             <a href="#travel" class="block py-3 px-6 text-slate-300 hover:bg-sky-400/20">Travel</a>
             <a href="#social" class="block py-3 px-6 text-slate-300 hover:bg-sky-400/20">Social</a>
@@ -151,18 +178,18 @@
         <!-- Hero Section -->
         <section id="home" class="min-h-screen flex items-center justify-center text-center">
             <div class="max-w-4xl">
-                <h1 class="text-6xl md:text-8xl font-black text-slate-100 leading-tight">
+                <h1 class="text-5xl sm:text-6xl md:text-8xl font-black text-slate-100 leading-tight">
                     Dipsraj
                 </h1>
-                <h2 class="text-4xl md:text-6xl font-extrabold leading-tight mt-2">
-                    <span class="gradient-text">Codes. Rides. Captures.</span>
+                <h2 class="text-3xl sm:text-4xl md:text-6xl font-extrabold leading-tight mt-6">
+                    <span class="gradient-text">Codes. Rides. Frames.</span>
                 </h2>
-                <p class="mt-8 text-lg md:text-xl text-slate-400">
+                <p class="mt-8 text-base sm:text-lg md:text-xl text-slate-400">
                     Crafting code, chasing horizons on two wheels, and capturing moments through a lens.
                 </p>
-                <div class="mt-10 flex justify-center gap-4">
-                    <a href="#web-projects" class="px-6 py-3 bg-sky-500 text-white font-semibold rounded-full shadow-lg hover:bg-sky-600 transition-all duration-300 transform hover:scale-105">View My Work</a>
-                    <a href="#contact" class="px-6 py-3 bg-slate-700 text-white font-semibold rounded-full shadow-lg hover:bg-slate-600 transition-all duration-300 transform hover:scale-105">Get In Touch</a>
+                <div class="mt-10 flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <a href="#footprint" class="w-full sm:w-auto px-6 py-3 bg-sky-500 text-white font-semibold rounded-full shadow-lg hover:bg-sky-600 transition-all duration-300 transform hover:scale-105">View My Work</a>
+                    <a href="#contact" class="w-full sm:w-auto px-6 py-3 bg-slate-700 text-white font-semibold rounded-full shadow-lg hover:bg-slate-600 transition-all duration-300 transform hover:scale-105">Get In Touch</a>
                 </div>
             </div>
         </section>
@@ -171,7 +198,7 @@
         <section id="about" class="py-20 md:py-32">
             <div class="grid md:grid-cols-5 gap-12 items-center">
                 <div class="md:col-span-2 fade-in-up">
-                    <img src="https://placehold.co/600x600/1a1a1a/ffffff?text=Portrait" alt="A portrait of Dipsraj" class="rounded-2xl shadow-2xl w-full h-auto object-cover">
+                    <img src="https://placehold.co/600x600/1a1a1a/ffffff?text=Portrait" alt="A portrait of Dipsraj" class="animated-portrait rounded-2xl shadow-2xl w-full h-auto object-cover">
                 </div>
                 <div class="md:col-span-3 fade-in-up">
                     <h2 class="text-3xl md:text-4xl font-bold text-slate-100 mb-4">About Me</h2>
@@ -195,43 +222,104 @@
                 <h2 class="text-3xl md:text-4xl font-bold text-slate-100 mb-4">Knowledge & Skills</h2>
                 <p class="text-slate-400 max-w-2xl mx-auto mb-12">My toolbox for building and creating. I'm always learning and expanding my capabilities.</p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="glass-card p-8 rounded-2xl fade-in-up">
-                    <h3 class="text-2xl font-bold text-sky-400 mb-4">Backend</h3>
-                    <ul class="space-y-3 text-slate-300"><li class="flex items-center"><span class="mr-3 text-sky-400">✓</span>Java</li><li class="flex items-center"><span class="mr-3 text-sky-400">✓</span>PHP & Laravel</li><li class="flex items-center"><span class="mr-3 text-sky-400">✓</span>Node.js & Express.js</li><li class="flex items-center"><span class="mr-3 text-sky-400">✓</span>C</li></ul>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Backend Skills -->
+                <div class="skill-card glass-card p-8 rounded-2xl fade-in-up">
+                    <h3 class="text-2xl font-bold text-sky-400 mb-6 text-center">Backend</h3>
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <span class="bg-sky-900/50 text-sky-300 px-3 py-1 rounded-full text-sm">Java</span>
+                        <span class="bg-sky-900/50 text-sky-300 px-3 py-1 rounded-full text-sm">PHP</span>
+                        <span class="bg-sky-900/50 text-sky-300 px-3 py-1 rounded-full text-sm">Laravel</span>
+                        <span class="bg-sky-900/50 text-sky-300 px-3 py-1 rounded-full text-sm">Node.js</span>
+                        <span class="bg-sky-900/50 text-sky-300 px-3 py-1 rounded-full text-sm">Express.js</span>
+                        <span class="bg-sky-900/50 text-sky-300 px-3 py-1 rounded-full text-sm">C</span>
+                    </div>
                 </div>
-                <div class="glass-card p-8 rounded-2xl fade-in-up" style="transition-delay: 150ms;">
-                    <h3 class="text-2xl font-bold text-indigo-400 mb-4">Frontend</h3>
-                    <ul class="space-y-3 text-slate-300"><li class="flex items-center"><span class="mr-3 text-indigo-400">✓</span>HTML5 & CSS3</li><li class="flex items-center"><span class="mr-3 text-indigo-400">✓</span>JavaScript (ES6+)</li><li class="flex items-center"><span class="mr-3 text-indigo-400">✓</span>React & Next.js</li><li class="flex items-center"><span class="mr-3 text-indigo-400">✓</span>Twig</li></ul>
+                <!-- Frontend Skills -->
+                <div class="skill-card glass-card p-8 rounded-2xl fade-in-up" style="transition-delay: 100ms;">
+                    <h3 class="text-2xl font-bold text-indigo-400 mb-6 text-center">Frontend</h3>
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <span class="bg-indigo-900/50 text-indigo-300 px-3 py-1 rounded-full text-sm">HTML5</span>
+                        <span class="bg-indigo-900/50 text-indigo-300 px-3 py-1 rounded-full text-sm">CSS3</span>
+                        <span class="bg-indigo-900/50 text-indigo-300 px-3 py-1 rounded-full text-sm">JavaScript</span>
+                        <span class="bg-indigo-900/50 text-indigo-300 px-3 py-1 rounded-full text-sm">React</span>
+                        <span class="bg-indigo-900/50 text-indigo-300 px-3 py-1 rounded-full text-sm">Next.js</span>
+                        <span class="bg-indigo-900/50 text-indigo-300 px-3 py-1 rounded-full text-sm">Twig</span>
+                    </div>
                 </div>
-                <div class="glass-card p-8 rounded-2xl fade-in-up" style="transition-delay: 300ms;">
-                    <h3 class="text-2xl font-bold text-emerald-400 mb-4">CMS & More</h3>
-                    <ul class="space-y-3 text-slate-300"><li class="flex items-center"><span class="mr-3 text-emerald-400">✓</span>Drupal (8, 9, 10, 11)</li><li class="flex items-center"><span class="mr-3 text-emerald-400">✓</span>REST APIs & GraphQL</li><li class="flex items-center"><span class="mr-3 text-emerald-400">✓</span>Git & Version Control</li><li class="flex items-center"><span class="mr-3 text-emerald-400">✓</span>Photography & Lightroom</li></ul>
+                <!-- CMS & Tools -->
+                <div class="skill-card glass-card p-8 rounded-2xl fade-in-up" style="transition-delay: 200ms;">
+                    <h3 class="text-2xl font-bold text-emerald-400 mb-6 text-center">CMS & Tools</h3>
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <span class="bg-emerald-900/50 text-emerald-300 px-3 py-1 rounded-full text-sm">Drupal 8/9/10/11</span>
+                        <span class="bg-emerald-900/50 text-emerald-300 px-3 py-1 rounded-full text-sm">REST APIs</span>
+                        <span class="bg-emerald-900/50 text-emerald-300 px-3 py-1 rounded-full text-sm">GraphQL</span>
+                        <span class="bg-emerald-900/50 text-emerald-300 px-3 py-1 rounded-full text-sm">Git</span>
+                    </div>
+                </div>
+                <!-- Creative Skills -->
+                <div class="skill-card glass-card p-8 rounded-2xl fade-in-up" style="transition-delay: 300ms;">
+                    <h3 class="text-2xl font-bold text-rose-400 mb-6 text-center">Creative</h3>
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <span class="bg-rose-900/50 text-rose-300 px-3 py-1 rounded-full text-sm">Photography</span>
+                        <span class="bg-rose-900/50 text-rose-300 px-3 py-1 rounded-full text-sm">Videography</span>
+                        <span class="bg-rose-900/50 text-rose-300 px-3 py-1 rounded-full text-sm">Lightroom</span>
+                        <span class="bg-rose-900/50 text-rose-300 px-3 py-1 rounded-full text-sm">Video Editing</span>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Web Projects Section -->
-        <section id="web-projects" class="py-20 md:py-32">
+        <!-- Digital Footprint Section -->
+        <section id="footprint" class="py-20 md:py-32">
             <div class="text-center fade-in-up">
-                <h2 class="text-3xl md:text-4xl font-bold text-slate-100 mb-4">Projects</h2>
-                <p class="text-slate-400 max-w-2xl mx-auto mb-12">A selection of my professional work, from complex web applications to custom modules.</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-100 mb-4">My Digital Footprint</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto mb-12">A collection of my projects, creative works, and online presence.</p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="group relative overflow-hidden rounded-2xl fade-in-up glass-card">
-                    <img src="https://placehold.co/800x600/1e293b/ffffff?text=E-commerce" alt="E-commerce Project Thumbnail" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500 opacity-40 group-hover:opacity-20">
-                    <div class="absolute inset-0 p-8 flex flex-col justify-center">
-                        <h3 class="text-2xl font-bold text-white mb-2">E-commerce Platform</h3>
-                        <p class="text-slate-300 mb-4">A full-stack e-commerce site built with Laravel and React, featuring a custom payment gateway integration.</p>
-                        <a href="#" class="text-sky-400 font-semibold hover:underline self-start">View Case Study →</a>
+            <div class="flex flex-wrap items-stretch justify-center gap-8 max-w-7xl mx-auto">
+                <!-- Project Card 1 -->
+                <div class="w-full max-w-sm project-card glass-card rounded-2xl overflow-hidden flex flex-col h-full fade-in-up">
+                    <img src="https://placehold.co/800x600/1e293b/ffffff?text=E-commerce" alt="E-commerce Project Thumbnail" class="w-full h-48 object-cover transition-transform duration-300">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold text-white mb-2">E-commerce Platform</h3>
+                        <p class="text-slate-300 mb-4 flex-grow">A full-stack e-commerce site built with Laravel and React.</p>
+                        <a href="#" class="text-sky-400 font-semibold hover:underline self-start mt-4">View Case Study →</a>
                     </div>
                 </div>
-                <div class="group relative overflow-hidden rounded-2xl fade-in-up glass-card" style="transition-delay: 150ms;">
-                    <img src="https://placehold.co/800x600/475569/ffffff?text=Drupal+Portal" alt="Drupal Project Thumbnail" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500 opacity-40 group-hover:opacity-20">
-                    <div class="absolute inset-0 p-8 flex flex-col justify-center">
-                        <h3 class="text-2xl font-bold text-white mb-2">University Portal (Drupal 10)</h3>
-                        <p class="text-slate-300 mb-4">A large-scale, multilingual portal for a major university, focusing on performance and accessibility.</p>
-                        <a href="#" class="text-sky-400 font-semibold hover:underline self-start">View Project Details →</a>
+                <!-- Project Card 2 -->
+                <div class="w-full max-w-sm project-card glass-card rounded-2xl overflow-hidden flex flex-col h-full fade-in-up" style="transition-delay: 100ms;">
+                    <img src="https://placehold.co/800x600/475569/ffffff?text=Drupal+Portal" alt="Drupal Project Thumbnail" class="w-full h-48 object-cover transition-transform duration-300">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold text-white mb-2">University Portal (Drupal 10)</h3>
+                        <p class="text-slate-300 mb-4 flex-grow">A large-scale, multilingual portal for a major university.</p>
+                        <a href="#" class="text-sky-400 font-semibold hover:underline self-start mt-4">View Project Details →</a>
+                    </div>
+                </div>
+                <!-- Project Card 3: Travel Album -->
+                <div class="w-full max-w-sm project-card glass-card rounded-2xl overflow-hidden flex flex-col h-full fade-in-up" style="transition-delay: 200ms;">
+                    <img src="https://placehold.co/800x600/c2410c/ffffff?text=Himalayan+Album" alt="Himalayan Travel Album Thumbnail" class="w-full h-48 object-cover transition-transform duration-300">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold text-white mb-2">Himalayan Travel Album</h3>
+                        <p class="text-slate-300 mb-4 flex-grow">A photographic journey through the stunning landscapes of the Himalayas.</p>
+                        <a href="#" class="text-sky-400 font-semibold hover:underline self-start mt-4">Explore Album →</a>
+                    </div>
+                </div>
+                <!-- Project Card 4 -->
+                <div class="w-full max-w-sm project-card glass-card rounded-2xl overflow-hidden flex flex-col h-full fade-in-up" style="transition-delay: 300ms;">
+                    <img src="https://placehold.co/800x600/047857/ffffff?text=Personal+Blog" alt="Personal Blog Thumbnail" class="w-full h-48 object-cover transition-transform duration-300">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold text-white mb-2">Personal Blog</h3>
+                        <p class="text-slate-300 mb-4 flex-grow">Thoughts on technology, travel, and the intersection of the two.</p>
+                        <a href="#" class="text-sky-400 font-semibold hover:underline self-start mt-4">Read My Blog →</a>
+                    </div>
+                </div>
+                <!-- Project Card 5: YouTube -->
+                <div class="w-full max-w-sm project-card glass-card rounded-2xl overflow-hidden flex flex-col h-full fade-in-up" style="transition-delay: 400ms;">
+                    <img src="https://placehold.co/800x600/be123c/ffffff?text=YouTube" alt="YouTube Channel Thumbnail" class="w-full h-48 object-cover transition-transform duration-300">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold text-white mb-2">My YouTube Channel</h3>
+                        <p class="text-slate-300 mb-4 flex-grow">Travel vlogs, tech tutorials, and visual stories from my adventures.</p>
+                        <a href="#" class="text-sky-400 font-semibold hover:underline self-start mt-4">Watch Now →</a>
                     </div>
                 </div>
             </div>
@@ -267,12 +355,38 @@
         <!-- Education & Certificates Section -->
         <section id="education" class="py-20 md:py-32">
             <div class="text-center fade-in-up">
-                <h2 class="text-3xl md:text-4xl font-bold text-slate-100 mb-4">Education & Certificates</h2>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-100 mb-4">Education & Credentials</h2>
                 <p class="text-slate-400 max-w-2xl mx-auto mb-12">My foundation and commitment to continuous learning.</p>
             </div>
-            <div class="max-w-4xl mx-auto space-y-6 fade-in-up">
-                <div class="glass-card p-6 rounded-lg"><h3 class="font-bold text-slate-100 text-lg">B.Tech in Computer Science & Engineering</h3><p class="text-slate-400">Hooghly Engineering & Technology College</p></div>
-                <div class="glass-card p-6 rounded-lg"><h3 class="font-semibold text-slate-100 text-lg">Certificates</h3><div class="mt-4 space-y-3"><div class="flex justify-between items-center"><p class="text-slate-300">Acquia Certified Drupal 10 Developer</p><a href="#" class="text-sky-400 hover:underline text-sm flex-shrink-0 ml-4">View Credential</a></div><div class="flex justify-between items-center"><p class="text-slate-300">Certified Java Associate</p><a href="#" class="text-sky-400 hover:underline text-sm flex-shrink-0 ml-4">View Credential</a></div></div></div>
+            <div class="max-w-4xl mx-auto space-y-8 fade-in-up">
+                <div class="glass-card p-8 rounded-2xl">
+                    <div class="flex items-center gap-5 mb-6">
+                        <div class="bg-indigo-900/50 text-indigo-400 p-3 rounded-full">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.66 4 3 6 3s6-1.34 6-3v-5"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-100 text-xl">B.Tech in Computer Science & Engineering</h3>
+                            <p class="text-slate-400">Hooghly Engineering & Technology College</p>
+                        </div>
+                    </div>
+                    <hr class="border-slate-700/50">
+                    <div class="mt-6">
+                        <h3 class="font-semibold text-slate-100 text-xl mb-4 flex items-center gap-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-sky-400"><path d="M12 15l-3.5-3.5 1.5-6L16 11.5z"/><path d="M20.5 7c.2.2.3.4.3.7 0 .6-.4 1-1 1.2.3.4.5.8.5 1.3 0 .5-.2 1-.5 1.3.4.2.8.7.8 1.3 0 .5-.2 1-.5 1.3-.2.2-.5.3-.8.3-.6 0-1.2-.4-1.2-1 0-.3.1-.5.3-.7-.2-.2-.3-.5-.3-.7 0-.6.4-1 1-1.2-.3-.4-.5-.8-.5-1.3 0-.5.2-1 .5-1.3C19.1 7.2 19.7 7 20 7c.3 0 .5.1.5.3z"/><path d="M12 15l-3.5-3.5 1.5-6L16 11.5z"/></svg>
+                            <span>Certifications</span>
+                        </h3>
+                        <div class="space-y-4 mt-6">
+                            <div class="flex justify-between items-center bg-slate-800/30 p-4 rounded-lg">
+                                <p class="font-medium text-slate-300">Acquia Certified Drupal 10 Developer</p>
+                                <a href="#" class="text-sky-400 hover:underline text-sm font-semibold flex-shrink-0 ml-4">View</a>
+                            </div>
+                            <div class="flex justify-between items-center bg-slate-800/30 p-4 rounded-lg">
+                                <p class="font-medium text-slate-300">Certified Java Associate</p>
+                                <a href="#" class="text-sky-400 hover:underline text-sm font-semibold flex-shrink-0 ml-4">View</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -292,16 +406,37 @@
 
         <!-- Contact Section -->
         <section id="contact" class="py-20 md:py-32">
-            <div class="text-center max-w-3xl mx-auto fade-in-up">
+            <div class="text-center fade-in-up mb-12">
                 <h2 class="text-3xl md:text-4xl font-bold text-slate-100 mb-4">Let's Connect</h2>
-                <p class="text-slate-400 mb-8">
-                    Have a project in mind, a question, or just want to talk about coding, cameras, or bikes? Fill out the form below and I'll get back to you.
+                <p class="text-slate-400 max-w-xl mx-auto">
+                    Have a project in mind, a question, or just want to talk about coding, cameras, or bikes? I'd love to hear from you.
                 </p>
-                <form action="https://api.web3forms.com/submit" method="POST" class="glass-card rounded-2xl p-8 text-left">
+            </div>
+            <div class="max-w-4xl mx-auto fade-in-up glass-card rounded-2xl p-8 md:p-12">
+                <form action="https://api.web3forms.com/submit" method="POST" class="text-left">
                     <!-- IMPORTANT: Replace with your public access key from web3forms.com -->
                     <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 mb-8">
+                        <div class="flex items-center gap-4">
+                            <div class="bg-sky-900/50 p-3 rounded-full"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-sky-400"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></div>
+                            <div>
+                                <h3 class="text-lg font-semibold text-slate-200">Email</h3>
+                                <a href="mailto:hello@dipsraj.in" class="text-slate-400 hover:text-sky-400 transition-colors">hello@dipsraj.in</a>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="bg-indigo-900/50 p-3 rounded-full"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-400"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></div>
+                            <div>
+                                <h3 class="text-lg font-semibold text-slate-200">Phone</h3>
+                                <p class="text-slate-400">+91 12345 67890</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="border-slate-700 my-8">
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
                         <div>
                             <label for="name" class="block text-slate-300 mb-2">Full Name</label>
                             <input type="text" id="name" name="name" required class="w-full bg-slate-800/50 border border-slate-700 rounded-lg px-4 py-2 text-slate-200 focus:outline-none focus:ring-2 focus:ring-sky-500 transition-all">
@@ -320,7 +455,7 @@
                         <textarea id="message" name="message" rows="5" required class="w-full bg-slate-800/50 border border-slate-700 rounded-lg px-4 py-2 text-slate-200 focus:outline-none focus:ring-2 focus:ring-sky-500 transition-all"></textarea>
                     </div>
                     <div class="text-center">
-                        <button type="submit" class="px-8 py-3 bg-sky-500 text-white font-bold rounded-full shadow-lg hover:bg-sky-600 transition-all duration-300 transform hover:scale-105">
+                        <button type="submit" class="w-full px-8 py-3 bg-sky-500 text-white font-bold rounded-full shadow-lg hover:bg-sky-600 transition-all duration-300 transform hover:scale-105">
                             Send Message
                         </button>
                     </div>
