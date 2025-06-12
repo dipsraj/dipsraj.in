@@ -1,119 +1,388 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>dipsraj - Coming Soon</title>
+
+    <!-- SEO Meta Tags -->
+    <title>Dipsraj (Dipanjan Kundu) - Developer, Photographer, Traveler</title>
+    <meta name="description" content="Portfolio of Dipanjan Kundu (Dipsraj), a Senior Software Developer at Innoraft, showcasing web development projects, nature photography, and bike travel vlogs.">
+    <meta name="keywords" content="Dipanjan Kundu, Dipsraj, Web Developer, Senior Software Developer, Innoraft, Drupal Expert, Photographer, Bike Traveler, Portfolio, dipsraj.in">
+    <meta name="author" content="Dipanjan Kundu">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dipsraj.in/">
+    <meta property="og:title" content="Dipsraj (Dipanjan Kundu) - Developer, Photographer, Traveler">
+    <meta property="og:description" content="Explore the work of Dipsraj, a creative technologist blending backend development with stunning photography and adventurous travel.">
+    <meta property="og:image" content="https://placehold.co/1200x630/1a1a1a/ffffff?text=Dipsraj">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://dipsraj.in/">
+    <meta property="twitter:title" content="Dipsraj (Dipanjan Kundu) - Developer, Photographer, Traveler">
+    <meta property="twitter:description" content="Explore the work of Dipsraj, a creative technologist blending backend development with stunning photography and adventurous travel.">
+    <meta property="twitter:image" content="https://placehold.co/1200x630/1a1a1a/ffffff?text=Dipsraj">
+
+    <!-- Favicon -->
+    <link rel="icon" href="https://placehold.co/32x32/1a1a1a/ffffff?text=D" type="image/png">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
     <style>
+        /* Custom styles for the portfolio */
         body {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            height: 100vh;
-            background: radial-gradient(circle at 20% 40%, #0d0d2b, #000000);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+            background-color: #111111;
+            color: #E2E8F0; /* slate-200 */
+        }
+        /* Particle.js background container */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0; /* Behind content but above background color */
+        }
+        /* Make all content relative to allow z-index stacking */
+        .content-wrapper {
             position: relative;
+            z-index: 10;
         }
-        h1, p {
-            font-family: Arial, sans-serif;
-            color: #e0e0ff;
-            text-align: center;
-            animation: floatText 6s ease-in-out infinite alternate;
+        /* Custom gradient for text */
+        .gradient-text {
+            background: linear-gradient(to right, #38bdf8, #818cf8); /* sky-400 to indigo-400 */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        h1 {
-            font-size: 5rem;
-            animation-delay: 0.5s;
+        /* Glassmorphism effect for cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        p {
-            font-size: 1.5rem;
-            margin-top: 10px;
-            animation-delay: 1s;
+        /* Animation class to be added by JS */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
-        @keyframes bubbleUp {
-            0% {
-                transform: translateY(0);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100vh);
-                opacity: 0;
-            }
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
-        @keyframes floatText {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-10px); }
+        /* Responsive video container */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 1rem; /* 16px */
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #818cf8;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6366f1;
         }
     </style>
 </head>
-<body>
-<div>
-    <h1>dipsraj</h1>
-    <p>Something epic is on the horizon...</p>
+
+<body class="antialiased">
+
+<!-- Particle.js background -->
+<div id="particles-js"></div>
+
+<div class="content-wrapper">
+    <!-- Header & Navigation -->
+    <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#home" class="text-3xl font-bold gradient-text">Dipsraj</a>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="#about" class="text-slate-300 hover:text-sky-400 transition-colors">About</a>
+                <a href="#skills" class="text-slate-300 hover:text-sky-400 transition-colors">Skills</a>
+                <a href="#web-projects" class="text-slate-300 hover:text-sky-400 transition-colors">Web Projects</a>
+                <a href="#photography" class="text-slate-300 hover:text-sky-400 transition-colors">Photography</a>
+                <a href="#travel" class="text-slate-300 hover:text-sky-400 transition-colors">Travel</a>
+                <a href="#contact" class="px-4 py-2 border border-sky-400 text-sky-400 rounded-full hover:bg-sky-400 hover:text-gray-900 transition-all duration-300">Contact</a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-slate-300"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-900/80 backdrop-blur-sm">
+            <a href="#about" class="block py-3 px-6 text-slate-300 hover:bg-sky-400/20">About</a>
+            <a href="#skills" class="block py-3 px-6 text-slate-300 hover:bg-sky-400/20">Skills</a>
+            <a href="#web-projects" class="block py-3 px-6 text-slate-300 hover:bg-sky-400/20">Projects</a>
+            <a href="#photography" class="block py-3 px-6 text-slate-300 hover:bg-sky-400/20">Photography</a>
+            <a href="#travel" class="block py-3 px-6 text-slate-300 hover:bg-sky-400/20">Travel</a>
+            <a href="#social" class="block py-3 px-6 text-slate-300 hover:bg-sky-400/20">Social</a>
+            <a href="#contact" class="block py-3 px-6 text-slate-300 hover:bg-sky-400/20">Contact</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6">
+        <!-- Hero Section -->
+        <section id="home" class="min-h-screen flex items-center justify-center text-center">
+            <div class="max-w-4xl">
+                <h1 class="text-6xl md:text-8xl font-black text-slate-100 leading-tight">
+                    Dipsraj
+                </h1>
+                <h2 class="text-4xl md:text-6xl font-extrabold leading-tight mt-2">
+                    <span class="gradient-text">Codes. Rides. Captures.</span>
+                </h2>
+                <p class="mt-8 text-lg md:text-xl text-slate-400">
+                    Crafting code, chasing horizons on two wheels, and capturing moments through a lens.
+                </p>
+                <div class="mt-10 flex justify-center gap-4">
+                    <a href="#web-projects" class="px-6 py-3 bg-sky-500 text-white font-semibold rounded-full shadow-lg hover:bg-sky-600 transition-all duration-300 transform hover:scale-105">View My Work</a>
+                    <a href="#contact" class="px-6 py-3 bg-slate-700 text-white font-semibold rounded-full shadow-lg hover:bg-slate-600 transition-all duration-300 transform hover:scale-105">Get In Touch</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about" class="py-20 md:py-32">
+            <div class="grid md:grid-cols-5 gap-12 items-center">
+                <div class="md:col-span-2 fade-in-up">
+                    <img src="https://placehold.co/600x600/1a1a1a/ffffff?text=Portrait" alt="A portrait of Dipsraj" class="rounded-2xl shadow-2xl w-full h-auto object-cover">
+                </div>
+                <div class="md:col-span-3 fade-in-up">
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-100 mb-4">About Me</h2>
+                    <p class="text-slate-300 text-lg mb-4">
+                        Hello, I'm <strong>Dipanjan Kundu</strong>, but you can call me Dipsraj.
+                    </p>
+                    <p class="text-slate-400 mb-4">
+                        By day, I'm a <strong>Senior Software Developer</strong> at <a href="https://www.innoraft.ai/" target="_blank" rel="noopener noreferrer" class="text-sky-400 hover:underline">Innoraft Solutions</a>, where I build robust, scalable web solutions. My expertise lies in backend systems and Drupal, but my curiosity constantly pulls me toward the ever-evolving world of frontend development.
+                    </p>
+                    <p class="text-slate-400 mb-4">
+                        For me, life isn't just about code; it's about the journey. The thrill of hitting the open road on my bike, exploring winding mountain paths, and discovering new vistas is a core part of who I am. This love for exploration fuels my other passion: photography. I strive to capture the raw beauty of nature and the candid stories of people.
+                    </p>
+                    <p class="text-slate-300 font-medium">This blend of analytical problem-solving and creative expression defines my work, my art, and my life.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-20 md:py-32">
+            <div class="text-center fade-in-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-100 mb-4">Knowledge & Skills</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto mb-12">My toolbox for building and creating. I'm always learning and expanding my capabilities.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass-card p-8 rounded-2xl fade-in-up">
+                    <h3 class="text-2xl font-bold text-sky-400 mb-4">Backend</h3>
+                    <ul class="space-y-3 text-slate-300"><li class="flex items-center"><span class="mr-3 text-sky-400">✓</span>Java</li><li class="flex items-center"><span class="mr-3 text-sky-400">✓</span>PHP & Laravel</li><li class="flex items-center"><span class="mr-3 text-sky-400">✓</span>Node.js & Express.js</li><li class="flex items-center"><span class="mr-3 text-sky-400">✓</span>C</li></ul>
+                </div>
+                <div class="glass-card p-8 rounded-2xl fade-in-up" style="transition-delay: 150ms;">
+                    <h3 class="text-2xl font-bold text-indigo-400 mb-4">Frontend</h3>
+                    <ul class="space-y-3 text-slate-300"><li class="flex items-center"><span class="mr-3 text-indigo-400">✓</span>HTML5 & CSS3</li><li class="flex items-center"><span class="mr-3 text-indigo-400">✓</span>JavaScript (ES6+)</li><li class="flex items-center"><span class="mr-3 text-indigo-400">✓</span>React & Next.js</li><li class="flex items-center"><span class="mr-3 text-indigo-400">✓</span>Twig</li></ul>
+                </div>
+                <div class="glass-card p-8 rounded-2xl fade-in-up" style="transition-delay: 300ms;">
+                    <h3 class="text-2xl font-bold text-emerald-400 mb-4">CMS & More</h3>
+                    <ul class="space-y-3 text-slate-300"><li class="flex items-center"><span class="mr-3 text-emerald-400">✓</span>Drupal (8, 9, 10, 11)</li><li class="flex items-center"><span class="mr-3 text-emerald-400">✓</span>REST APIs & GraphQL</li><li class="flex items-center"><span class="mr-3 text-emerald-400">✓</span>Git & Version Control</li><li class="flex items-center"><span class="mr-3 text-emerald-400">✓</span>Photography & Lightroom</li></ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Web Projects Section -->
+        <section id="web-projects" class="py-20 md:py-32">
+            <div class="text-center fade-in-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-100 mb-4">Projects</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto mb-12">A selection of my professional work, from complex web applications to custom modules.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="group relative overflow-hidden rounded-2xl fade-in-up glass-card">
+                    <img src="https://placehold.co/800x600/1e293b/ffffff?text=E-commerce" alt="E-commerce Project Thumbnail" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500 opacity-40 group-hover:opacity-20">
+                    <div class="absolute inset-0 p-8 flex flex-col justify-center">
+                        <h3 class="text-2xl font-bold text-white mb-2">E-commerce Platform</h3>
+                        <p class="text-slate-300 mb-4">A full-stack e-commerce site built with Laravel and React, featuring a custom payment gateway integration.</p>
+                        <a href="#" class="text-sky-400 font-semibold hover:underline self-start">View Case Study →</a>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl fade-in-up glass-card" style="transition-delay: 150ms;">
+                    <img src="https://placehold.co/800x600/475569/ffffff?text=Drupal+Portal" alt="Drupal Project Thumbnail" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500 opacity-40 group-hover:opacity-20">
+                    <div class="absolute inset-0 p-8 flex flex-col justify-center">
+                        <h3 class="text-2xl font-bold text-white mb-2">University Portal (Drupal 10)</h3>
+                        <p class="text-slate-300 mb-4">A large-scale, multilingual portal for a major university, focusing on performance and accessibility.</p>
+                        <a href="#" class="text-sky-400 font-semibold hover:underline self-start">View Project Details →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Photography Section -->
+        <section id="photography" class="py-20 md:py-32">
+            <div class="text-center fade-in-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-100 mb-4">Through The Lens</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto mb-12">Capturing moments, from vast landscapes to intimate portraits. Here's a glimpse of my world.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 fade-in-up">
+                <div class="group relative overflow-hidden rounded-2xl aspect-w-1 aspect-h-1"><img src="https://placehold.co/600x600/334155/ffffff?text=Landscape" alt="Landscape Photo" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"><div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6"><h3 class="text-white text-xl font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">Mountain Majesty</h3></div></div>
+                <div class="group relative overflow-hidden rounded-2xl aspect-w-1 aspect-h-1"><img src="https://placehold.co/600x600/52525b/ffffff?text=Portrait" alt="Portrait Photo" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"><div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6"><h3 class="text-white text-xl font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">Candid Moment</h3></div></div>
+                <div class="group relative overflow-hidden rounded-2xl aspect-w-1 aspect-h-1"><img src="https://placehold.co/600x600/0c4a6e/ffffff?text=Nature" alt="Nature Photo" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"><div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6"><h3 class="text-white text-xl font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">Untamed Wild</h3></div></div>
+            </div>
+            <div class="text-center mt-12 fade-in-up"><a href="#" class="px-6 py-3 border border-sky-400 text-sky-400 font-semibold rounded-full hover:bg-sky-400 hover:text-gray-900 transition-all duration-300 transform hover:scale-105">View Full Gallery</a></div>
+        </section>
+
+        <!-- Bike Rides & Travel Section -->
+        <section id="travel" class="py-20 md:py-32">
+            <div class="text-center fade-in-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-100 mb-4">On The Road</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto mb-12">Two wheels, endless roads, and a camera to capture it all. Join me on my latest adventures.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 fade-in-up">
+                <div class="video-container glass-card shadow-lg"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+                <div class="video-container glass-card shadow-lg"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+            </div>
+            <div class="text-center mt-12 fade-in-up"><a href="#" class="px-6 py-3 border border-indigo-400 text-indigo-400 font-semibold rounded-full hover:bg-indigo-400 hover:text-gray-900 transition-all duration-300 transform hover:scale-105">Visit My YouTube Channel</a></div>
+        </section>
+
+        <!-- Education & Certificates Section -->
+        <section id="education" class="py-20 md:py-32">
+            <div class="text-center fade-in-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-100 mb-4">Education & Certificates</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto mb-12">My foundation and commitment to continuous learning.</p>
+            </div>
+            <div class="max-w-4xl mx-auto space-y-6 fade-in-up">
+                <div class="glass-card p-6 rounded-lg"><h3 class="font-bold text-slate-100 text-lg">B.Tech in Computer Science & Engineering</h3><p class="text-slate-400">Hooghly Engineering & Technology College</p></div>
+                <div class="glass-card p-6 rounded-lg"><h3 class="font-semibold text-slate-100 text-lg">Certificates</h3><div class="mt-4 space-y-3"><div class="flex justify-between items-center"><p class="text-slate-300">Acquia Certified Drupal 10 Developer</p><a href="#" class="text-sky-400 hover:underline text-sm flex-shrink-0 ml-4">View Credential</a></div><div class="flex justify-between items-center"><p class="text-slate-300">Certified Java Associate</p><a href="#" class="text-sky-400 hover:underline text-sm flex-shrink-0 ml-4">View Credential</a></div></div></div>
+            </div>
+        </section>
+
+        <!-- Social Media Section -->
+        <section id="social" class="py-20 md:py-32">
+            <div class="text-center fade-in-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-100 mb-4">Find Me Online</h2>
+                <p class="text-slate-400 max-w-xl mx-auto mb-10">Connect with me on social media for my latest updates and creative work.</p>
+                <div class="flex justify-center space-x-8">
+                    <a href="#" class="text-slate-400 hover:text-sky-400 transition-transform duration-300 transform hover:-translate-y-1" aria-label="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+                    <a href="#" class="text-slate-400 hover:text-sky-400 transition-transform duration-300 transform hover:-translate-y-1" aria-label="GitHub"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+                    <a href="#" class="text-slate-400 hover:text-sky-400 transition-transform duration-300 transform hover:-translate-y-1" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                    <a href="#" class="text-slate-400 hover:text-sky-400 transition-transform duration-300 transform hover:-translate-y-1" aria-label="YouTube"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2A29 29 0 0 0 23 11.75a29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 md:py-32">
+            <div class="text-center max-w-3xl mx-auto fade-in-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-100 mb-4">Let's Connect</h2>
+                <p class="text-slate-400 mb-8">
+                    Have a project in mind, a question, or just want to talk about coding, cameras, or bikes? Fill out the form below and I'll get back to you.
+                </p>
+                <form action="https://api.web3forms.com/submit" method="POST" class="glass-card rounded-2xl p-8 text-left">
+                    <!-- IMPORTANT: Replace with your public access key from web3forms.com -->
+                    <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label for="name" class="block text-slate-300 mb-2">Full Name</label>
+                            <input type="text" id="name" name="name" required class="w-full bg-slate-800/50 border border-slate-700 rounded-lg px-4 py-2 text-slate-200 focus:outline-none focus:ring-2 focus:ring-sky-500 transition-all">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-slate-300 mb-2">Email Address</label>
+                            <input type="email" id="email" name="email" required class="w-full bg-slate-800/50 border border-slate-700 rounded-lg px-4 py-2 text-slate-200 focus:outline-none focus:ring-2 focus:ring-sky-500 transition-all">
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <label for="subject" class="block text-slate-300 mb-2">Subject</label>
+                        <input type="text" id="subject" name="subject" required class="w-full bg-slate-800/50 border border-slate-700 rounded-lg px-4 py-2 text-slate-200 focus:outline-none focus:ring-2 focus:ring-sky-500 transition-all">
+                    </div>
+                    <div class="mb-6">
+                        <label for="message" class="block text-slate-300 mb-2">Message</label>
+                        <textarea id="message" name="message" rows="5" required class="w-full bg-slate-800/50 border border-slate-700 rounded-lg px-4 py-2 text-slate-200 focus:outline-none focus:ring-2 focus:ring-sky-500 transition-all"></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="px-8 py-3 bg-sky-500 text-white font-bold rounded-full shadow-lg hover:bg-sky-600 transition-all duration-300 transform hover:scale-105">
+                            Send Message
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800">
+        <div class="container mx-auto px-6 py-8">
+            <div class="text-center">
+                <p class="text-slate-400">
+                    &copy; <span id="year"></span> Dipanjan Kundu (Dipsraj). All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
 </div>
+
+
+<!-- particles.js lib -->
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const bgAnimation = document.createElement('div');
-    bgAnimation.style.position = 'absolute';
-    bgAnimation.style.width = '100%';
-    bgAnimation.style.height = '100%';
-    bgAnimation.style.overflow = 'hidden';
-    bgAnimation.style.zIndex = '-1';
+  document.addEventListener('DOMContentLoaded', function() {
+    // Set current year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-    const bubbleCount = 40;
-    const bubbleDensity = 5;
-    const minSpeed = 3;
-    const maxSpeed = 20;
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
 
-    for (let i = 0; i < bubbleCount * bubbleDensity; i++) {
-      const bubble = document.createElement('div');
-      const size = Math.random() * 10 + 5;
-      const speed = Math.random() * (maxSpeed - minSpeed) + minSpeed;
-      const delay = Math.random() * 5;
-      const glowIntensity = Math.random() * 10 + 5;
+    // Close mobile menu when a link is clicked
+    mobileMenu.addEventListener('click', (e) => { if (e.target.tagName === 'A') { mobileMenu.classList.add('hidden'); } });
 
-      bubble.style.width = bubble.style.height = `${size}px`;
-      bubble.style.position = 'absolute';
-      bubble.style.bottom = '-10px';
-      bubble.style.left = `${Math.random() * 100}%`;
-      bubble.style.backgroundColor = 'rgba(255, 255, 255, 0.7)';
-      bubble.style.borderRadius = '50%';
-      bubble.style.animation = `bubbleUp ${speed}s linear ${delay}s infinite`;
-      bubble.style.filter = `blur(2px)`;
-      bubble.style.boxShadow = `0 0 ${glowIntensity}px rgba(255, 255, 255, 0.8)`;
+    // Sticky header on scroll
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) { header.classList.add('bg-gray-900/80', 'backdrop-blur-sm', 'shadow-lg'); }
+      else { header.classList.remove('bg-gray-900/80', 'backdrop-blur-sm', 'shadow-lg'); }
+    });
 
-      bgAnimation.appendChild(bubble);
-    }
+    // Fade-in animations on scroll
+    const faders = document.querySelectorAll('.fade-in-up');
+    const appearOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+    const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) { return; }
+        else { entry.target.classList.add('visible'); appearOnScroll.unobserve(entry.target); }
+      });
+    }, appearOptions);
+    faders.forEach(fader => { appearOnScroll.observe(fader); });
 
-    document.body.appendChild(bgAnimation);
-
-    // Adding twinkling stars
-    const starContainer = document.createElement('div');
-    starContainer.style.position = 'absolute';
-    starContainer.style.width = '100%';
-    starContainer.style.height = '100%';
-    starContainer.style.zIndex = '-2';
-
-    const starCount = 100;
-    for (let i = 0; i < starCount; i++) {
-      const star = document.createElement('div');
-      const size = Math.random() * 2 + 1;
-      star.style.width = star.style.height = `${size}px`;
-      star.style.position = 'absolute';
-      star.style.top = `${Math.random() * 100}%`;
-      star.style.left = `${Math.random() * 100}%`;
-      star.style.backgroundColor = 'white';
-      star.style.borderRadius = '50%';
-      star.style.opacity = Math.random();
-      star.style.animation = `twinkle ${Math.random() * 5 + 2}s infinite alternate`;
-      starContainer.appendChild(star);
-    }
-
-    document.body.appendChild(starContainer);
+    // Initialize Particles.js
+    particlesJS('particles-js', {
+      "particles": { "number": { "value": 50, "density": { "enable": true, "value_area": 800 } }, "color": { "value": "#4A5568" }, "shape": { "type": "circle" }, "opacity": { "value": 0.3, "random": true }, "size": { "value": 2, "random": true }, "line_linked": { "enable": true, "distance": 150, "color": "#4A5568", "opacity": 0.2, "width": 1 }, "move": { "enable": true, "speed": 1, "direction": "none", "random": true, "straight": false, "out_mode": "out", "bounce": false } },
+      "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": false }, "resize": true }, "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 0.5 } } } },
+      "retina_detect": true
+    });
   });
 </script>
 </body>
+
 </html>
